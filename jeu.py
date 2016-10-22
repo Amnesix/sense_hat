@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#
+# Jeu du serpent...
+#
+# Appuyer sur le bouton central du joystick pour démarrer une nouvelle partie.
+# Utiliser le joystick pour diriger le serpent.
+# Manger le plus de nourriture possible...
+#
 
 from sense_hat import SenseHat, ACTION_PRESSED, ACTION_HELD, ACTION_RELEASED
 from time import sleep
