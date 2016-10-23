@@ -17,7 +17,8 @@ from threading import Timer
 t = (64, 64, 64)
 s = (0, 64, 0)
 n = (0, 0, 64)
-p = [(64, 0, 0) for _ in range(64)]
+p = (64, 0, 0)
+o = (96,48,0)
 
 def clamp(val, min_val=0, max_val=7):
     return min(max_val, max(min_val, val))
@@ -38,6 +39,10 @@ class Jeu:
         self.sense.stick.direction_middle = self.push_button
         self.dx = self.dy = 0
         self.en_cours = False
+        self.sense.clear(o)
+        Timer(1, self.clear).start()
+
+    def clear(self):
         self.sense.clear()
 
     def move_up(self, event):
@@ -87,6 +92,7 @@ class Jeu:
             self.en_cours = False
             self.sense.show_message("SCORE %d"%len(self.serpent), 0.05,
                                text_colour=(64, 64, 0), back_colour=(64, 0, 0))
+            Timer(1, self.clear).start()
             return
         self.serpent.append((self.x, self.y))
         if self.x == self.nx and self.y == self.ny:
