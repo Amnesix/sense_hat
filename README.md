@@ -1,7 +1,7 @@
 # sense_hat
 Quelques développement autour de la carte sense_hat.
 
-## jeu.py
+## seprent.py
 Jeu de type serpent. Appuyer sur le bouton du joystick pour démarrer une
 nouvelle partie. La partie démarre réellement en choisissant une direction,
 toujours avec le joystick.
