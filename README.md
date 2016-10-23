@@ -8,5 +8,8 @@ toujours avec le joystick.
 Attention, le serpent accélère non par à chaque nourriture avalée, mais en
 permanence. Le but est donc de perdre le moins de temps possible.
 
-Prochaine version : utilisation de l'accéléromètre pour diriger le serpent qui
+Pour éviter de rendre le tout injouable, la longueur du serpent est limitée à 20
+pixels et le timer ne descend pas en dessous de 1/10s.
+
+Prochaine version  ? Utilisation de l'accéléromètre pour diriger le serpent qui
 se déplacera toujours vers le bas...
