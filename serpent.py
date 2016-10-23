@@ -56,8 +56,11 @@ class Jeu:
 
     def move_up(self, event):
         if event.action == ACTION_PRESSED:
-            self.dy = -1
-            self.dx = 0
+            if self.en_cours:
+                self.dy = -1
+                self.dx = 0
+            elif self.score > 0:
+                self.affiche_score()
 
     def move_down(self, event):
         if event.action == ACTION_PRESSED:
@@ -87,6 +90,12 @@ class Jeu:
             self.score = 0
             self.run()
 
+    def affiche_score(self):
+        self.sense.show_message("SCORE %d"%self.score, 0.05,
+                                text_colour=jaune,
+                                back_colour=rouge_fonce)
+        Timer(1, self.clear).start()
+
     def run(self):
         if not self.bouffe:
             while True:
@@ -101,10 +110,7 @@ class Jeu:
         if self.dx + self.dy != 0:
             if (self.x, self.y) in self.serpent:
                 self.en_cours = False
-                self.sense.show_message("SCORE %d"%self.score, 0.05,
-                                        text_colour=jaune,
-                                        back_colour=rouge_fonce)
-                Timer(1, self.clear).start()
+                self.affiche_score()
                 return
             self.duree*=.995
             if self.duree < .1:
