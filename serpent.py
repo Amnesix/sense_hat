@@ -78,6 +78,8 @@ class Jeu:
             self.dy = 0
 
     def push_button(self, event):
+        if event.action != ACTION_PRESSED:
+            return
         if not self.en_cours:
             self.en_cours = True
             self.x = randint(0, 7)
@@ -89,6 +91,11 @@ class Jeu:
             self.bouffe = False
             self.score = 0
             self.run()
+        else:
+            if self.timer.is_alive():
+                self.timer.cancel()
+            else:
+                self.run()
 
     def affiche_score(self):
         self.sense.show_message("SCORE %d"%self.score, 0.05,
@@ -134,11 +141,9 @@ class Jeu:
             else:
                 self.sense.set_pixel(c[0], c[1], jaune_fonce)
             j += 1
-        #if len(self.serpent) > 1:
-            #for i in self.serpent[:-1]:
-                #self.sense.set_pixel(i[0], i[1], vert_fonce)
-        #self.sense.set_pixel(self.x, self.y, vert)
-        Timer(self.duree, self.run).start()
+        self.timer = Timer(self.duree, self.run)
+        self.timer.start()
+        #Timer(self.duree, self.run).start()
 
 
 jeu = Jeu(SenseHat())
